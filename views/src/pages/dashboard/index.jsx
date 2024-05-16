@@ -39,7 +39,7 @@ const Dashboard = (props) => {
       const token = await JSON.parse(localStorage.getItem("accessToken"));
 
       await axios
-        .get(`http://localhost:8080/api/v1/admins/${id}`, {
+        .get(`http://localhost:3001/api/v1/admins/${id}`, {
           headers: {
             access_token: token,
           },
@@ -67,7 +67,7 @@ const Dashboard = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/products")
+        .get("http://localhost:3001/api/v1/products")
         .then((response) => {
           setProductDatas([...response.data.datas]);
         })
@@ -76,7 +76,7 @@ const Dashboard = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/onstock")
+        .get("http://localhost:3001/api/v1/onstock")
         .then((response) => {
           setTotalOnStock(response.data.total_on_stock.total_on_stock);
         })
@@ -85,7 +85,7 @@ const Dashboard = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/suppliers")
+        .get("http://localhost:3001/api/v1/suppliers")
         .then((response) => {
           setSupplierDatas([...response.data.datas]);
         })
@@ -94,7 +94,7 @@ const Dashboard = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/distributors")
+        .get("http://localhost:3001/api/v1/distributors")
         .then((response) => {
           setDistributorDatas([...response.data.datas]);
         })

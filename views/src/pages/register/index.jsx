@@ -45,7 +45,7 @@ const Register = (props) => {
 
     await axios
       .post(
-        "http://localhost:8080/api/v1/register",
+        "http://localhost:3001/api/v1/register",
         
         {
           roleId: 2,
@@ -110,7 +110,7 @@ const Register = (props) => {
                   <div className="mb-4">
                     <p className="font-medium tracking-widest mb-2">EMAIL</p>
                     <input
-                      type="text"
+                      type="email"
                       required
                       autoComplete="off"
                       name="email"
@@ -152,6 +152,7 @@ const Register = (props) => {
                     <input
                       type="file"
                       name="profilPhoto"
+                      required
                       onChange={(event) => {
                         setProfilPhoto(event.target.files[0])
                       }}

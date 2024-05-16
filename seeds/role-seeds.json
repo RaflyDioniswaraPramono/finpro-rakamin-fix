@@ -1,8 +1,8 @@
 [
   {
-    "roleName": "SUPER_ADMIN"
+    "roleName": "ADMIN"
   },
   {
-    "roleName": "ADMIN"
+    "roleName": "KASIR"
   }
 ]

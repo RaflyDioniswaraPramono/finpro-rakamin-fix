@@ -1,26 +1,26 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "finpro_rakamin",
+    "username": "root",
+    "password": "",
+    "database": "db_pos_elektronik",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "port": 5433
+    "dialect": "mysql"
+    
   },
   "test": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "finpro_rakamin_test",
+    "username": "root",
+    "password": "",
+    "database": "db_pos_elektronik",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "port": 5433
+    "dialect": "mysql"
+    
   },
   "production": {
-    "username": "postgres",
-    "password": "admin",
-    "database": "finpro_rakamin_production",
+    "username": "root",
+    "password": "",
+    "database": "db_pos_elektronik",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "port": 5433
+    "dialect": "mysql"
+    
   }
 }

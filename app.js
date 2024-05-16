@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({origin: '*'}));
 app.use(routes);
 
 app.listen(PORT, () => {

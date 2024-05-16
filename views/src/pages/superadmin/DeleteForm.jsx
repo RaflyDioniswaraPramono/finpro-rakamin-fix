@@ -23,7 +23,7 @@ const DeleteForm = (props) => {
     const token = await JSON.parse(localStorage.getItem("accessToken"));
 
     await axios
-      .delete(`http://localhost:8080/api/v1/admins/${props.deletedId}`, {
+      .delete(`http://localhost:3001/api/v1/admins/${props.deletedId}`, {
         headers: {
           access_token: token
         }

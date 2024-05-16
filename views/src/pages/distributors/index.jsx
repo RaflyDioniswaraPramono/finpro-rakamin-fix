@@ -29,7 +29,7 @@ const Distributors = () => {
     const fetchDatas = async () => {
       if (keywords.length > 0) {
         await axios
-        .post("http://localhost:8080/api/v1/search/distributors", {
+        .post("http://localhost:3001/api/v1/search/distributors", {
           keywords: keywords,
         })
         .then((response) => {
@@ -42,7 +42,7 @@ const Distributors = () => {
         });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/distributors")
+          .get("http://localhost:3001/api/v1/distributors")
           .then((response) => {
             setDistributorDatas([...response.data.datas]);
           })
@@ -62,7 +62,7 @@ const Distributors = () => {
 
   const showUpdateDialog = async (ids) => {
     await axios
-      .get(`http://localhost:8080/api/v1/distributors/${ids}`)
+      .get(`http://localhost:3001/api/v1/distributors/${ids}`)
       .then((response) => {
         setUpdatedDatas(response.data.datas);
       })

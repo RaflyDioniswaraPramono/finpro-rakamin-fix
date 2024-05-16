@@ -21,7 +21,7 @@ const Accept = (props) => {
 
   const handleAccept = async () => {
     await axios
-      .post(`http://localhost:8080/api/v1/approves/${props.acceptedId}`)
+      .post(`http://localhost:3001/api/v1/approves/${props.acceptedId}`)
       .then((response) => {
         props.openBackdrop();
         props.openAlert({

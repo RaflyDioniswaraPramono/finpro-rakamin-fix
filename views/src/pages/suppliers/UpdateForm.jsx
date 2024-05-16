@@ -42,7 +42,7 @@ const UpdateForm = (props) => {
     event.preventDefault();
 
     await axios
-      .put("http://localhost:8080/api/v1/suppliers", {
+      .put("http://localhost:3001/api/v1/suppliers", {
         id: values.id,
         supplierName: values.supplierName,
         supplierAddress: values.supplierAddress

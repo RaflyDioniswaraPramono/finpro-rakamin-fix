@@ -30,7 +30,7 @@ const AddForm = (props) => {
   useEffect(() => {
     const fetchDatas = async () => {
       await axios
-        .get("http://localhost:8080/api/v1/distributors")
+        .get("http://localhost:3001/api/v1/distributors")
         .then((response) => {
           setDistributorDatas([...response.data.datas]);
           
@@ -41,7 +41,7 @@ const AddForm = (props) => {
         });
         
         await axios
-        .get("http://localhost:8080/api/v1/products")
+        .get("http://localhost:3001/api/v1/products")
         .then((response) => {
           setProductDatas([...response.data.datas]);
           
@@ -59,7 +59,7 @@ const AddForm = (props) => {
     event.preventDefault();    
 
     await axios
-      .post("http://localhost:8080/api/v1/reports/distributors", {
+      .post("http://localhost:3001/api/v1/reports/distributors", {
         productId: parseInt(productId),
         distributorId: parseInt(distributorId),
         amountDistributorProduct: parseInt(amountDistributorProduct),

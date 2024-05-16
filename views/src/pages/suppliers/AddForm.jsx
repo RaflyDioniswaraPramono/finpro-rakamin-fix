@@ -37,7 +37,7 @@ const AddForm = (props) => {
     event.preventDefault();
 
     await axios
-      .post("http://localhost:8080/api/v1/suppliers", {
+      .post("http://localhost:3001/api/v1/suppliers", {
         supplierName: values.supplierName,
         supplierAddress: values.supplierAddress
       })

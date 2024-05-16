@@ -40,7 +40,7 @@ const Login = (props) => {
     event.preventDefault();
 
     await axios
-      .post("http://localhost:8080/api/v1/login", {
+      .post("http://localhost:3001/api/v1/login", {
         username: values.username,
         password: values.password,
       })
@@ -68,7 +68,7 @@ const Login = (props) => {
     const token = await JSON.parse(localStorage.getItem("accessToken"));
 
     await axios
-      .get(`http://localhost:8080/api/v1/admins/${ids}`, {
+      .get(`http://localhost:3001/api/v1/admins/${ids}`, {
         headers: {
           access_token: token,
         },

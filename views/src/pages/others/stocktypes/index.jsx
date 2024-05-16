@@ -28,7 +28,7 @@ const StockTypes = () => {
     const fetchDatas = async () => {
       if (keywords.length > 0) {
         await axios
-          .post("http://localhost:8080/api/v1/search/types", {
+          .post("http://localhost:3001/api/v1/search/types", {
             keywords: keywords,
           })
           .then((response) => {
@@ -41,7 +41,7 @@ const StockTypes = () => {
           });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/types")
+          .get("http://localhost:3001/api/v1/types")
           .then((response) => {
             setStockTypeDatas([...response.data.datas]);
           })
@@ -61,7 +61,7 @@ const StockTypes = () => {
 
   const showUpdateDialog = async (ids) => {
     await axios
-      .get(`http://localhost:8080/api/v1/types/${ids}`)
+      .get(`http://localhost:3001/api/v1/types/${ids}`)
       .then((response) => {
         setUpdatedDatas(response.data.datas);
       })

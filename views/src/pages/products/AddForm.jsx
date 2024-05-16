@@ -31,7 +31,7 @@ const AddForm = (props) => {
   useEffect(() => {
     const fetchDatas = async () => {
       await axios
-        .get("http://localhost:8080/api/v1/types")
+        .get("http://localhost:3001/api/v1/types")
         .then((response) => {
           setProductTypes([...response.data.datas]);
         })
@@ -40,7 +40,7 @@ const AddForm = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/categories")
+        .get("http://localhost:3001/api/v1/categories")
         .then((response) => {
           setProcuctCategories([...response.data.datas]);
         })
@@ -65,7 +65,7 @@ const AddForm = (props) => {
     event.preventDefault();
 
     await axios
-      .post("http://localhost:8080/api/v1/products", {
+      .post("http://localhost:3001/api/v1/products", {
         categoryId: parseInt(values.categoryId),
         stockTypeId: parseInt(values.stockTypeId),
         productName: values.productName,

@@ -30,7 +30,7 @@ const AdminDetails = (props) => {
 
       if (keywords.length > 0) {
         await axios
-          .post("http://localhost:8080/api/v1/search/admins", {
+          .post("http://localhost:3001/api/v1/search/admins", {
             keywords: keywords,
           })
           .then((response) => {
@@ -43,7 +43,7 @@ const AdminDetails = (props) => {
           });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/admins", {
+          .get("http://localhost:3001/api/v1/admins", {
             headers: {
               access_token: token,
             },
@@ -111,7 +111,7 @@ const AdminDetails = (props) => {
                   </TableCell>
                   <TableCell align="right">
                     <img
-                      src={`http://localhost:8080/${admin.profil_photo}`}
+                      src={`http://localhost:3001/${admin.profil_photo}`}
                       alt={admin.profil_photo}
                       className="w-20 h-20 rounded-full p-0"
                     />

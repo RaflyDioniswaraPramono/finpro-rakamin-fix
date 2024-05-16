@@ -40,7 +40,7 @@ const UpdateForm = (props) => {
     event.preventDefault();
 
     await axios
-      .put("http://localhost:8080/api/v1/types", {
+      .put("http://localhost:3001/api/v1/types", {
         id: values.id,
         stockType: values.stockType
       })

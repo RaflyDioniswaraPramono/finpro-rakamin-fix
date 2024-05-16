@@ -3,10 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  mapStateToProps,
-  mapDispatchToProps,
-} from "../../../services/state.service";
+import { mapStateToProps, mapDispatchToProps } from "../../../services/state.service";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const AddForm = (props) => {
@@ -19,6 +16,7 @@ const AddForm = (props) => {
     closeBackdrop: PropTypes.func,
   };
 
+  const [hargaProduk, setHargaProduk] = useState(0);
   const [supplierDatas, setSupplierDatas] = useState([]);
   const [productDatas, setProductDatas] = useState([]);
 
@@ -27,25 +25,33 @@ const AddForm = (props) => {
   const [amountSupplierProduct, setAmountSupplierProduct] = useState(0);
   const [sendingDate, setSendingDate] = useState("");
 
+  const handleChangeProduct = (values) => {
+    const value = JSON.parse(values);
+
+    setProductId(value?.id);
+    setHargaProduk(value?.price);
+  };
+
   useEffect(() => {
     const fetchDatas = async () => {
       await axios
-        .get("http://localhost:8080/api/v1/suppliers")
+        .get("http://localhost:3001/api/v1/suppliers")
         .then((response) => {
           setSupplierDatas([...response.data.datas]);
-          
+
           setSupplierId(response.data.datas[0].id);
-        })        
+        })
         .catch((err) => {
           console.log(err);
         });
-        
-        await axios
-        .get("http://localhost:8080/api/v1/products")
+
+      await axios
+        .get("http://localhost:3001/api/v1/products")
         .then((response) => {
           setProductDatas([...response.data.datas]);
-          
+
           setProductId(response.data.datas[0].id);
+          setHargaProduk(response?.data?.data[0].product_price);
         })
         .catch((err) => {
           console.log(err);
@@ -56,10 +62,10 @@ const AddForm = (props) => {
   }, []);
 
   const handleAddProduct = async (event) => {
-    event.preventDefault();    
+    event.preventDefault();
 
     await axios
-      .post("http://localhost:8080/api/v1/reports/suppliers", {
+      .post("http://localhost:3001/api/v1/reports/suppliers", {
         productId: parseInt(productId),
         supplierId: parseInt(supplierId),
         amountSupplierProduct: parseInt(amountSupplierProduct),
@@ -88,14 +94,10 @@ const AddForm = (props) => {
 
   return (
     <React.Fragment>
-      <Dialog
-        open={props.openAddForm}
-        onClose={() => props.setOpenAddForm(false)}>
+      <Dialog open={props.openAddForm} onClose={() => props.setOpenAddForm(false)}>
         <div className="py-10 px-8 w-[30rem]">
           <div className="mb-10">
-            <h3 className="text-center font-bold tracking-widest text-2xl">
-              ADD SUPPLIER REPORT
-            </h3>
+            <h3 className="text-center font-bold tracking-widest text-2xl">ADD SUPPLIER REPORT</h3>
           </div>
           <form onSubmit={handleAddProduct}>
             <div className="mb-5">
@@ -104,15 +106,15 @@ const AddForm = (props) => {
                 required
                 name="productId"
                 onChange={(event) => {
-                  setProductId(event.target.value);
+                  handleChangeProduct(event.target.value);
                 }}
                 className="w-full text-sm p-2 bg-gray-100 shadow-md cursor-pointer">
                 {productDatas.map((product) => {
-                  const { id, product_name } = product;
+                  const { id, product_name, product_price, StockType } = product;
 
                   return (
-                    <option key={id} value={id}>
-                      {product_name}
+                    <option key={id} value={JSON.stringify({ id: id, price: product_price })}>
+                      {product_name} - {StockType?.stock_type}
                     </option>
                   );
                 })}
@@ -137,7 +139,7 @@ const AddForm = (props) => {
               </select>
             </div>
             <div className="mb-5">
-              <p className="text-sm mb-2">Sending Amount</p>
+              <p className="text-sm mb-2">Jumlah Pembelian</p>
               <input
                 type="text"
                 autoComplete="off"
@@ -146,6 +148,20 @@ const AddForm = (props) => {
                 onChange={(event) => {
                   setAmountSupplierProduct(event.target.value);
                 }}
+                className="p-2 text-sm tracking-wider w-full bg-gray-100 shadow-md rounded-sm"
+              />
+            </div>
+            <div className="mb-5">
+              <p className="text-sm mb-2">Harga Bayar</p>
+              <input
+                type="text"
+                autoComplete="off"
+                disabled
+                value={
+                  amountSupplierProduct === 0
+                    ? parseInt(hargaProduk)
+                    : parseInt(hargaProduk) * parseInt(amountSupplierProduct)
+                }
                 className="p-2 text-sm tracking-wider w-full bg-gray-100 shadow-md rounded-sm"
               />
             </div>

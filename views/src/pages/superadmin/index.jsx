@@ -21,6 +21,7 @@ import {
 import AdminDetails from "./AdminDetails";
 import Accept from "./Accept";
 import Decline from "./Decline";
+import instance from "../../config/instance";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const SuperAdmins = (props) => {
@@ -47,13 +48,14 @@ const SuperAdmins = (props) => {
 
   useEffect(() => {
     const fetchDatas = async () => {
-      const token = await JSON.parse(localStorage.getItem("accessToken"));
+      const token = await JSON.parse(localStorage.getItem("accessToken"));      
 
       await axios
-        .get(`http://localhost:8080/api/v1/admins/${id}`, {
+        .get(`http://localhost:3001/api/v1/admins/${id}`, {
           headers: {
             access_token: token,
           },
+          withCredentials: true
         })
         .then((response) => {
           setDatas([response.data.datas]);
@@ -78,7 +80,7 @@ const SuperAdmins = (props) => {
         });
 
       await axios
-        .get("http://localhost:8080/api/v1/approves", {
+        .get("http://localhost:3001/api/v1/approves", {
           headers: {
             access_token: token,
           },
@@ -107,7 +109,7 @@ const SuperAdmins = (props) => {
 
   return (
     <React.Fragment>
-      <DashboardNavs />
+      <DashboardNavs id={id} />
       <Alerts />
       <Backdrops />
       <div className="absolute bg-indigo-100 w-full h-72 -z-[1] top-[7rem]"></div>
@@ -216,7 +218,7 @@ const SuperAdmins = (props) => {
                       </TableCell>
                       <TableCell align="right">
                         <img                          
-                          src={`http://localhost:8080/${admin.profil_photo}`}
+                          src={`http://localhost:3001/${admin.profil_photo}`}
                           alt={admin.profil_photo}
                           className="w-20 h-20 rounded-full p-0"
                         />

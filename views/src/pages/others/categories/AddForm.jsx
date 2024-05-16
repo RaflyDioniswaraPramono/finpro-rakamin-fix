@@ -36,7 +36,7 @@ const AddForm = (props) => {
     event.preventDefault();
 
     await axios
-      .post("http://localhost:8080/api/v1/categories", {
+      .post("http://localhost:3001/api/v1/categories", {
         categoryName: values.categoryName
       })
       .then((response) => {

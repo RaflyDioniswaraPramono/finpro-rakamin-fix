@@ -32,7 +32,7 @@ const Products = () => {
     const fetchDatas = async () => {
       if (keywords.length > 0) {
         await axios
-          .post("http://localhost:8080/api/v1/search/products", {
+          .post("http://localhost:3001/api/v1/search/products", {
             keywords: keywords,
           })
           .then((response) => {
@@ -45,7 +45,7 @@ const Products = () => {
           });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/products")
+          .get("http://localhost:3001/api/v1/products")
           .then((response) => {
             setProductDatas([...response.data.datas]);
           })
@@ -65,7 +65,7 @@ const Products = () => {
 
   const showUpdateDialog = async (ids) => {
     await axios
-      .get(`http://localhost:8080/api/v1/products/${ids}`)
+      .get(`http://localhost:3001/api/v1/products/${ids}`)
       .then((response) => {
         setUpdatedDatas(response.data.datas);
       })

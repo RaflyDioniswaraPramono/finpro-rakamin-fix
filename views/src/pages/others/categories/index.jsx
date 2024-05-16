@@ -28,7 +28,7 @@ const Categories = () => {
     const fetchDatas = async () => {
       if (keywords.length > 0) {
         await axios
-          .post("http://localhost:8080/api/v1/search/categories", {
+          .post("http://localhost:3001/api/v1/search/categories", {
             keywords: keywords,
           })
           .then((response) => {
@@ -41,7 +41,7 @@ const Categories = () => {
           });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/categories")
+          .get("http://localhost:3001/api/v1/categories")
           .then((response) => {
             setCategoryDatas([...response.data.datas]);
           })
@@ -61,7 +61,7 @@ const Categories = () => {
 
   const showUpdateDialog = async (ids) => {
     await axios
-      .get(`http://localhost:8080/api/v1/categories/${ids}`)
+      .get(`http://localhost:3001/api/v1/categories/${ids}`)
       .then((response) => {
         setUpdatedDatas(response.data.datas);
       })

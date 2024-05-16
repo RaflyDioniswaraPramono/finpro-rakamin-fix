@@ -21,7 +21,7 @@ const DeleteForm = (props) => {
 
   const handleDelete = async () => {
     await axios
-      .delete(`http://localhost:8080/api/v1/reports/distributors/${props.deletedId}`)
+      .delete(`http://localhost:3001/api/v1/reports/distributors/${props.deletedId}`)
       .then((response) => {
         props.openBackdrop();
         props.openAlert({

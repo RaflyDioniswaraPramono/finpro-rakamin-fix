@@ -1,12 +1,13 @@
+import { PropTypes } from "prop-types";
 import { logo } from "../../assets";
 import Container from "../Container";
-import { fakeProfile } from "../../assets";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const DashboardNavs = () => {
-  const { id } = useParams();
+const DashboardNavs = ({id}) => {
+  DashboardNavs.propTypes = {
+    id: PropTypes.string
+  }
 
   const [profil, setProfil] = useState(null);
 
@@ -14,18 +15,17 @@ const DashboardNavs = () => {
     const fetchData = async () => {
       const token = await JSON.parse(localStorage.getItem("accessToken"));
 
-      await axios
-        .get(`http://localhost:8080/api/v1/admins/${id}`, {
+      try {
+        const response = await axios.get(`admins/${id}`, {
           headers: {
             access_token: token
           }
         })
-        .then((response) => {
-          setProfil(response.data.datas.profil_photo);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  
+        setProfil(response?.data?.profil_photo);
+      } catch (error) {
+        console.log(error)
+      }
     };
 
     fetchData();
@@ -55,7 +55,7 @@ const DashboardNavs = () => {
           <div className="flex justify-end">
             <a href={`/profile/${id}`}>
               <img
-                src={`http://localhost:8080/${profil}`}
+                src={`http://localhost:3001/${profil}`}
                 alt="Profil Image"
                 className="w-12 rounded-full hover:shadow-[0_0_5px_#95C4EE]"
               />

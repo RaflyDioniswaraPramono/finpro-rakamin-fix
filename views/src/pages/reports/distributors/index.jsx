@@ -26,7 +26,7 @@ const DistributorReports = () => {
     const fetchDatas = async () => {
       if (shortType.length > 0) {
         await axios
-          .post("http://localhost:8080/api/v1/search/reports/distributors", {
+          .post("http://localhost:3001/api/v1/search/reports/distributors", {
             shortType: shortType,
           })
           .then((response) => {
@@ -37,7 +37,7 @@ const DistributorReports = () => {
           });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/reports/distributors")
+          .get("http://localhost:3001/api/v1/reports/distributors")
           .then((response) => {
             setDistributorReportDatas([...response.data.datas]);
           })

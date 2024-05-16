@@ -29,7 +29,7 @@ const Suppliers = () => {
     const fetchDatas = async () => {
       if (keywords.length > 0) {
         await axios
-        .post("http://localhost:8080/api/v1/search/suppliers", {
+        .post("http://localhost:3001/api/v1/search/suppliers", {
           keywords: keywords,
         })
         .then((response) => {
@@ -42,7 +42,7 @@ const Suppliers = () => {
         });
       } else {
         await axios
-          .get("http://localhost:8080/api/v1/suppliers")
+          .get("http://localhost:3001/api/v1/suppliers")
           .then((response) => {
             setSupplierDatas([...response.data.datas]);
           })
@@ -62,7 +62,7 @@ const Suppliers = () => {
 
   const showUpdateDialog = async (ids) => {
     await axios
-      .get(`http://localhost:8080/api/v1/suppliers/${ids}`)
+      .get(`http://localhost:3001/api/v1/suppliers/${ids}`)
       .then((response) => {
         setUpdatedDatas(response.data.datas);
       })
